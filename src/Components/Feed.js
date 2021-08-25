@@ -26,6 +26,32 @@ function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, commu
         margin: 'auto',
     }
 
+    const createButton = {
+        backgroundColor: 'Transparent',
+        borderColor: '#539987',
+        borderStyle: 'solid',
+        width: '250px',
+        padding: '10px',
+        color: '#539987',
+        fontWeight: 'bold',
+        borderRadius: '4px',
+        fontSize: '16px',
+        fontFamily: 'Roboto'
+    }
+
+    const commButton = {
+        backgroundColor: 'Transparent',
+        borderColor: 'none',
+        borderStyle: 'none',
+        width: '250px',
+        padding: '10px',
+        color: 'black',
+        borderRadius: '4px',
+        textAlign: 'left',
+        fontSize: '16px',
+        fontFamily: 'Roboto'
+    }
+
     function handleClick (){
         history.push('/newpost')
     }
@@ -38,11 +64,11 @@ function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, commu
     return (
         <div>
             <div className="leftNav" style={leftNavStyle}>
-                <button onClick={handleClick}>Create a Post</button>
-                <h3>Communities:</h3>
-                {communities.map(community => {
+                <button onClick={handleClick} style={createButton}>+ Create Post</button>
+                <h4>Communities:</h4>
+                {communities.map(comm => {
                     return(
-                        <button onClick={selectCommunity} key={community.id} value={community.id}>{community.emoji} {community.name}</button>
+                        <button className={(community === comm.id)? "selectedCommunityBtn" : ""} onClick={selectCommunity} style={commButton} key={comm.id} value={comm.id}>{comm.emoji} &nbsp; {comm.name}</button>
                     )
                 })}
              

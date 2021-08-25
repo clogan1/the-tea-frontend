@@ -50,10 +50,10 @@ function PostCard({post, activeUser, deletePost}) {
         setShowReplies(!showReplies)
     }
 
-    let displayTrash = (activeUser === user_id)
+    let displayTrash = (activeUser.id === user_id)
 
 
-    let alreadyLiked = likes.filter(like => like.user_id === activeUser).length > 0
+    let alreadyLiked = likes.filter(like => like.user_id === activeUser.id).length > 0
     // console.log(likes)
     //setLikedStatus(alreadyLiked)
 

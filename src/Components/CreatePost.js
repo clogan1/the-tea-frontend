@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { useHistory } from "react-router-dom"
 
 function CreatePost({ communities, activeUser, addPost }) {
-    
+
     let history = useHistory();
     const [formData, setFormData] = useState({
-        user_id: activeUser,
+        user_id: activeUser.id,
         community_id: 0,
         headline: '',
         content: '',
@@ -53,7 +53,7 @@ function CreatePost({ communities, activeUser, addPost }) {
         .then(post => addPost(post))
 
         setFormData({
-            user_id: activeUser,
+            user_id: activeUser.id,
             community_id: 0,
             headline: '',
             content: '',

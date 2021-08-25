@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import Feed from './Feed'
 import CreatePost from './CreatePost'
+import Header from './Header'
 
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
   const [community, setCommunity] = useState('')
   const [search, setSearch] = useState('')
   const [communitiesList, setCommunitiesList] = useState([])
-  const [activeUser, setActiveUser] = useState(1)
+  const [activeUser, setActiveUser] = useState({})
+
 
   useEffect(() => {
     fetch(`http://localhost:9292/posts`)
@@ -25,11 +27,17 @@ function App() {
     .then(setCommunitiesList)
   }, [])
 
+  useEffect(() => {
+    //defaulting to user 1 - update logic in the future
+    fetch(`http://localhost:9292/users/1`)
+    .then(res => res.json())
+    .then(setActiveUser)
+  }, [])
+
   function addPost(post){
     setPosts([post, ...posts])
   }
-  //console.log(posts)
-  //console.log(communitiesList)
+ 
 
   function deletePost(id){
     const updatedPosts = posts.filter(post => post.id !== id)
@@ -50,9 +58,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>The Tea</h1>
-      </header>
+      <Header activeUser={activeUser}/>
       <div className="app-body-container">
         <Switch>
           <Route path='/newpost'>
