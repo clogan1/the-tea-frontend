@@ -4,7 +4,7 @@ import Search from './Search'
 import PostContainer from './PostContainer'
 import { useHistory } from "react-router-dom"
 
-function Feed({ posts, activeUser, deletePost, setSort, search, setSearch }) {
+function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, community, setCommunity, communities }) {
     let history = useHistory();
 
     // CSS
@@ -30,15 +30,22 @@ function Feed({ posts, activeUser, deletePost, setSort, search, setSearch }) {
         history.push('/newpost')
     }
 
+   // console.log(communities)
+    function selectCommunity(e){
+        setCommunity(parseInt(e.target.value))
+    }
+
     return (
         <div>
             <div className="leftNav" style={leftNavStyle}>
                 <button onClick={handleClick}>Create a Post</button>
                 <h3>Communities:</h3>
-                <p>🌹  Bachelor Nation</p>
-                <p>🍸  Bravo</p>
-                <p>🌴  Love Island</p>
-                <p>🌎  90 Day Fiance</p>
+                {communities.map(community => {
+                    return(
+                        <button onClick={selectCommunity} key={community.id} value={community.id}>{community.emoji} {community.name}</button>
+                    )
+                })}
+             
 
             </div>
             <div className="feedContainer" style={feedContStyle}>

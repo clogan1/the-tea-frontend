@@ -8,7 +8,7 @@ import CreatePost from './CreatePost'
 function App() {
   const [posts, setPosts] = useState([])
   const [sort, setSort] = useState('new')
-  // const [community, setCommunity] = useState('')
+  const [community, setCommunity] = useState('')
   const [search, setSearch] = useState('')
   const [communitiesList, setCommunitiesList] = useState([])
   const [activeUser, setActiveUser] = useState(1)
@@ -28,13 +28,25 @@ function App() {
   function addPost(post){
     setPosts([post, ...posts])
   }
-  // console.log(posts)
+  //console.log(posts)
   //console.log(communitiesList)
 
   function deletePost(id){
     const updatedPosts = posts.filter(post => post.id !== id)
     setPosts(updatedPosts)
   }
+
+  const displayPosts = posts.filter(post => {
+    if(community !== ''){
+      return post.community_id === community
+    }else {return post}
+  }).sort((post1, post2) => {
+    if(sort === 'top'){
+      if (post1.likes.length > post2.likes.length) return -1
+    } else if (sort === 'new'){
+      if (post1.created_at> post2.created_at) return -1
+    }
+  })
 
   return (
     <div className="App">
@@ -48,7 +60,7 @@ function App() {
           </Route>
 
           <Route exact path="/">
-            <Feed posts={posts} activeUser={activeUser} deletePost={deletePost} setSort={setSort} search={search} setSearch={setSearch}/>
+            <Feed posts={displayPosts} activeUser={activeUser} deletePost={deletePost} setSort={setSort} search={search} setSearch={setSearch} community={community} setCommunity={setCommunity} communities={communitiesList}/>
           </Route>
         </Switch>
 
