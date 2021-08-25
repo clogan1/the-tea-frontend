@@ -20,10 +20,12 @@ function Header( { activeUser }) {
         width: '30%',
         padding: '10px', 
         paddingRight: '40px',
+        margin: 'auto'
     }
 
     const avatarstyle = {
         width: '10%',
+        minWidth: '50px',
         borderRadius: '50%',
         overflow: 'hidden',
         objectFit: 'cover',

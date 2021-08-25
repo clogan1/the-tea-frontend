@@ -62,7 +62,7 @@ function App() {
       <div className="app-body-container">
         <Switch>
           <Route path='/newpost'>
-            <CreatePost communities={communitiesList} activeUser={activeUser} addPost={addPost}/>
+            <CreatePost communities={communitiesList} activeUser={activeUser} addPost={addPost} setSort={setSort}/>
           </Route>
 
           <Route exact path="/">

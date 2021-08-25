@@ -1,10 +1,8 @@
 import React from 'react'
 
-function Reply({reply}) {
-    // console.log(reply)
+function Reply({ reply }) {
     
     const { content, created_at, user } = reply
-    const { username } = user
 
     const replyStyle = {
         border: '1px solid',
@@ -15,7 +13,7 @@ function Reply({reply}) {
     
     return (
         <div style={replyStyle} >
-            <span>{username} | {created_at}</span>
+            <span> {user.username} | {created_at}</span>
             <p>{content}</p>
         </div>
     )

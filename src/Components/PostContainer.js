@@ -3,7 +3,7 @@ import PostCard from './PostCard'
 
 function PostContainer({posts, activeUser, deletePost }) {
 
-  // console.log("fromContainer:", posts)
+  // console.log("fromContainer:", activeUser)
 
   const containerStyle = {
     backgroundColor: '#E4F1EE',

@@ -1,20 +1,33 @@
 import React from 'react'
 import Reply from './Reply'
-import { useState } from 'react'
+import ReplyForm from './ReplyForm'
+import { useState, useEffect } from 'react'
 
 function PostCard({post, activeUser, deletePost}) {
 
-    //console.log("in card:", post)
     const [showReplies, setShowReplies] = useState(false)
-    const [showDelete, setShowDelete] = useState(false)
-    //const [likeCount, setLikeCount] = useState(0)
-    //const [likedStatus, setLikedStatus] = useState(false)
+    const [alreadyLiked, setAlreadyLiked] = useState(false)
+    const [likeCount, setLikeCount] = useState('')
+    const [repliesArr, setRepliesArr] = useState([])
 
     const {id, community, content, created_at, headline, image_url, likes, replies, user, user_id} = post
     const { name } = community
     const { username } = user
 
-    // console.log(post)
+
+
+    useEffect(()=> {
+        setRepliesArr(replies)
+    }, [])
+
+    useEffect(() => {
+        let likeStatus = (likes.filter(like => like.user_id === activeUser.id).length > 0)? true : false
+        setAlreadyLiked(likeStatus)
+    }, [activeUser])
+
+    useEffect(()=> {
+        setLikeCount(likes.length)
+    }, [])
 
     const cardContainer = {
         width: '50%',
@@ -44,18 +57,16 @@ function PostCard({post, activeUser, deletePost}) {
 
     const replyDisplay = showReplies? null : {display: 'none'}
 
-    let likeCount = likes.length
-
     function toggleReplies () {
         setShowReplies(!showReplies)
     }
 
+    function addReply(reply){
+        setRepliesArr([...repliesArr, reply])
+    }
+
+
     let displayTrash = (activeUser.id === user_id)
-
-
-    let alreadyLiked = likes.filter(like => like.user_id === activeUser.id).length > 0
-    // console.log(likes)
-    //setLikedStatus(alreadyLiked)
 
     function handleDelete(id){
        // console.log(id)
@@ -71,7 +82,7 @@ function PostCard({post, activeUser, deletePost}) {
     function handleLike(){
 
         const likeBody = {
-            user_id: user_id,
+            user_id: activeUser.id,
             post_id: id
         }
 
@@ -79,7 +90,8 @@ function PostCard({post, activeUser, deletePost}) {
             alert('You already liked this post')
         } else {
 
-        //add logic if user has not already liked post
+        setAlreadyLiked(true)
+        setLikeCount((likeCount) => likeCount + 1)
 
         fetch(`http://localhost:9292/likes`, {
             method: 'POST',
@@ -90,8 +102,6 @@ function PostCard({post, activeUser, deletePost}) {
         })
         .then(res => res.json())
         .then(data => console.log(data))
-        // let newLikes = likeCount + 1
-        // setLikeCount(newLikes)
     }
     }
 
@@ -101,20 +111,21 @@ function PostCard({post, activeUser, deletePost}) {
         <div style={cardContainer}>
  
             <div style={spanStyle}>{name}</div>
-            <div style={likeStyle} onClick={handleLike}>{likeCount} {alreadyLiked? "🖤" : "🤍"}</div>
+            <div style={likeStyle} onClick={handleLike}> {likeCount} {alreadyLiked ? "🖤" : "🤍"}</div>
 
             <br></br>
 
             <span>{username} | {created_at}</span>
             <br></br>
             <h4>{headline}</h4>
-            {image_url? <img src={image_url} alt="image" style={postImgStyle}/> : null}
+            {image_url? <img src={image_url} alt={user_id} style={postImgStyle}/> : null}
             <p>{content}</p>
 
             <button onClick={toggleReplies}>{showReplies? "🙈 hide replies" : "💬 see replies"}</button>
             {displayTrash? <button onClick={() => handleDelete(id)}>🗑️</button> : null}
             <div className="ReplyList" style={replyDisplay}>
-                {replies.map(reply => {
+                <ReplyForm activeUser={activeUser} postId={id} addReply={addReply}/>
+                {repliesArr.map(reply => {
                     return(
                         <Reply reply={reply} key={reply.id}/>
                     )

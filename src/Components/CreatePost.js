@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from "react-router-dom"
 
-function CreatePost({ communities, activeUser, addPost }) {
+function CreatePost({ communities, activeUser, addPost, setSort }) {
 
     let history = useHistory();
     const [formData, setFormData] = useState({
@@ -59,7 +59,7 @@ function CreatePost({ communities, activeUser, addPost }) {
             content: '',
             image_url: ''
         })
-
+        setSort('new')
         history.push('/')
     }
 

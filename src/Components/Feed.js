@@ -10,7 +10,7 @@ function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, commu
     // CSS
     const leftNavStyle = {
         float: 'left',
-        width: '10%',
+        width: '15%',
         minHeight: '100vh',
         // backgroundColor: '#E4F1EE',
         textAlign: 'left',
@@ -19,7 +19,7 @@ function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, commu
 
     const feedContStyle = {
         padding: '10px',
-        width: '80%',
+        width: '70%',
         minHeight: '100vh',
         alignItems: 'center',
         justifyContent: 'center',
@@ -61,11 +61,17 @@ function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, commu
         setCommunity(parseInt(e.target.value))
     }
 
+    function selectAll () {
+        setCommunity('')
+    }
+
     return (
         <div>
             <div className="leftNav" style={leftNavStyle}>
                 <button onClick={handleClick} style={createButton}>+ Create Post</button>
-                <h4>Communities:</h4>
+                <br></br>
+                <br></br>
+                <button style={commButton} onClick={selectAll} className={(community === '')? "selectedCommunityBtn" : ""}>🏠 &nbsp; Home </button>
                 {communities.map(comm => {
                     return(
                         <button className={(community === comm.id)? "selectedCommunityBtn" : ""} onClick={selectCommunity} style={commButton} key={comm.id} value={comm.id}>{comm.emoji} &nbsp; {comm.name}</button>
