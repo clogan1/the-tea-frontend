@@ -1,8 +1,8 @@
 import React from 'react'
-
+import { useHistory } from "react-router-dom"
 
 function Header( { activeUser }) {
-    //console.log(activeUser)
+    let history = useHistory()
 
     const {id, username, avatar, created_at} = activeUser
 
@@ -32,9 +32,13 @@ function Header( { activeUser }) {
         backgroundColor: 'white',
     }
 
+    function routeHome(){
+        history.push('/')
+    }
+
     return (
         <header className="App-header">
-            <div className="logodiv" style={logoStyle}>
+            <div className="logodiv" style={logoStyle} onClick={routeHome}>
             <h2>The Tea</h2>
             </div>
             <div className="userdiv" style={userdivStyle}>

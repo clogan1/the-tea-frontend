@@ -121,7 +121,7 @@ function PostCard({post, activeUser, deletePost}) {
             {image_url? <img src={image_url} alt={user_id} style={postImgStyle}/> : null}
             <p>{content}</p>
 
-            <button onClick={toggleReplies}>{showReplies? "🙈 hide replies" : "💬 see replies"}</button>
+            <button onClick={toggleReplies}>{showReplies? "🙈  hide replies" : "💬  see replies"}</button>
             {displayTrash? <button onClick={() => handleDelete(id)}>🗑️</button> : null}
             <div className="ReplyList" style={replyDisplay}>
                 <ReplyForm activeUser={activeUser} postId={id} addReply={addReply}/>

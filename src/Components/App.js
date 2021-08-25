@@ -14,7 +14,6 @@ function App() {
   const [communitiesList, setCommunitiesList] = useState([])
   const [activeUser, setActiveUser] = useState({})
 
-
   useEffect(() => {
     fetch(`http://localhost:9292/posts`)
     .then(res => res.json())
@@ -48,7 +47,12 @@ function App() {
     if(community !== ''){
       return post.community_id === community
     }else {return post}
-  }).sort((post1, post2) => {
+  }).filter(post => {
+    if(search){
+      return post.headline.toLowerCase().includes(search.toLowerCase()) || post.content.toLowerCase().includes(search.toLowerCase()) 
+    } else {
+      return post
+    }}).sort((post1, post2) => {
     if(sort === 'top'){
       if (post1.likes.length > post2.likes.length) return -1
     } else if (sort === 'new'){
