@@ -10,8 +10,32 @@ function ReplyForm({ activeUser, postId, addReply }) {
         content: '',
     })
 
-    // console.log("from reply form:", activeUserId)
-    // console.log(replyData)
+    const addReplyButton = {
+        backgroundColor: '#539987',
+        padding: '5px',
+        borderRadius: '4px',
+        borderStyle: 'none',
+        fontFamily: 'Roboto',
+        height: '50px',
+        width: '10%',
+        marginLeft: '20px',
+        color: 'white',
+        fontWeight: 'bold',
+    }
+
+    const replyformdiv={
+        marginTop: '10px',
+    }
+
+    const styleInput = {
+        backgroundColor: '#E9ECEB',
+        borderStyle: 'none',
+        borderRadius: '4px',
+        width: '80%',
+        height: '40px',
+        padding: '5px',
+        paddingLeft: '20px',
+    }
 
     function handleChange(e){
         setReplyData({...replyData, content: e.target.value})
@@ -20,6 +44,9 @@ function ReplyForm({ activeUser, postId, addReply }) {
     function handleReplySubmit(e){
         e.preventDefault()
 
+        if(replyData.content === '' || replyData.content === ' '){
+            alert('Please add text to leave a reply!')
+        } else{
         let newReply = {...replyData, user_id: activeUserId}
 
         fetch(`http://localhost:9292/replies`, {
@@ -32,7 +59,8 @@ function ReplyForm({ activeUser, postId, addReply }) {
         .then(res => res.json())
         .then(rep => {
             let newRep = {...rep, user: {
-                username: activeUser.username
+                username: activeUser.username,
+                avatar: activeUser.avatar
             }}
             addReply(newRep)
         })
@@ -43,13 +71,15 @@ function ReplyForm({ activeUser, postId, addReply }) {
             content: '',
         })
     }
+    }
 
     return (
-        <div>
+        <div style={replyformdiv}>
             <form onSubmit={handleReplySubmit}>
                 <label>Add a reply</label>
-                <input type="text" name="replycontent" onChange={handleChange} value={replyData.content}></input>
-                <button type="submit">Add</button>
+                <br></br>
+                <input style={styleInput} type="text" name="replycontent" onChange={handleChange} value={replyData.content}></input>
+                <button style={addReplyButton} type="submit">Add</button>
             </form>          
         </div>
     )

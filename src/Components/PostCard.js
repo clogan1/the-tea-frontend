@@ -11,10 +11,11 @@ function PostCard({post, activeUser, deletePost}) {
     const [repliesArr, setRepliesArr] = useState([])
 
     const {id, community, content, created_at, headline, image_url, likes, replies, user, user_id} = post
-    const { name } = community
-    const { username } = user
+    const { name, emoji } = community
+    const { username, avatar } = user
 
-
+    const date = new Date(created_at)
+    const postDate = new Intl.DateTimeFormat('en-US', {dateStyle: 'medium'}).format(date)
 
     useEffect(()=> {
         setRepliesArr(replies)
@@ -30,30 +31,97 @@ function PostCard({post, activeUser, deletePost}) {
     }, [])
 
     const cardContainer = {
-        width: '50%',
+        width: '90%',
         backgroundColor: 'white',
         marginLeft: 'auto',
         marginRight: 'auto',
         marginTop: '10px',
         marginBottom: '10px',
         textAlign: 'left',
-        padding: '10px'
+        padding: '10px',
+        minWidth: '600px',
+        borderRadius: '4px',
+        boxShadow: '0 8px 6px -6px gray',
     }
 
     const postImgStyle = {
-        width: '300px'
+        width: '500px',
     }
-    const spanStyle = {
-        width: '60%',
-        fontWeight: 'bold',
+
+    const postAvatar = {
+        float: 'left',
+        width: '50px',
+        height: '50px',
+        borderRadius: '50%',
+        overflow: 'hidden',
+        objectFit: 'cover',
+        backgroundColor: 'white',
+    }
+
+    const dateStyle = {
+        color: '#BDC7C3',
         float: 'left'
     }
 
-    const likeStyle = {
-        textAlign: 'right',
+    const userInfoStyle = {
         float: 'left',
-        width: '30%'
+        width: '60%',
+        height: '60px',
     }
+
+    const spanStyle = {
+        float: 'left'
+    }
+
+    const communityTag ={
+        backgroundColor: '#E9ECEB',
+        padding: '5px 20px 5px',
+        borderRadius: '16px',
+        float: 'left',
+        marginTop: '10px'
+    }
+
+    const postInfoStyle = {
+        float: 'left',
+        width: '40%',
+        height: '60px'
+    }
+
+    const likeDiv = {
+        backgroundColor: '#E9ECEB',
+        padding: '5px 20px 5px',
+        borderRadius: '16px',
+        float: 'left',
+        marginLeft: '30px',
+        marginTop: '10px'
+    }
+
+    const cardBodyStyle = {
+        padding: '10px',
+        fontFamily: 'Source Serif Pro',
+        marginTop: '60px'
+    }
+
+    const replyButton = {
+        backgroundColor: 'Transparent',
+        borderColor: '#E9ECEB',
+        borderStyle: 'solid',
+        width: '90%',
+        padding: '5px',
+        borderRadius: '4px',
+        fontFamily: 'Roboto',
+        wordSpacing: '5px'
+    }
+
+    const trashButton = {
+        backgroundColor: 'Transparent',
+        borderColor: '#E9ECEB',
+        borderStyle: 'none',
+        padding: '5px',
+        marginLeft: '10px',
+        borderRadius: '4px',
+    }
+
 
     const replyDisplay = showReplies? null : {display: 'none'}
 
@@ -105,31 +173,39 @@ function PostCard({post, activeUser, deletePost}) {
     }
     }
 
-    //  
+ 
 
     return (
         <div style={cardContainer}>
+            <div className="cardHeader">
+                <div className="userInfo" style={userInfoStyle}>
+                    <img src={avatar} alt={username} style={postAvatar}/>
+                    <p style={spanStyle}><b>&nbsp;&nbsp;&nbsp;{username}   &nbsp;&nbsp;&nbsp;</b></p>
+                    <p style={dateStyle}>{postDate}</p>
+                </div>
+                <div className="postInfo" style={postInfoStyle}>
+                    <div style={communityTag}>{emoji}&nbsp;&nbsp; {name}</div>
+                    <div  style={likeDiv} onClick={handleLike}> {likeCount} {alreadyLiked ? "🖤" : "🤍"}</div>
+                </div>
+
+            </div>
+
+            <div className="cardBody" style={cardBodyStyle}>
  
-            <div style={spanStyle}>{name}</div>
-            <div style={likeStyle} onClick={handleLike}> {likeCount} {alreadyLiked ? "🖤" : "🤍"}</div>
+                <h2>{headline}</h2>
+                {image_url? <img src={image_url} alt={user_id} style={postImgStyle}/> : null}
+                <p>{content}</p>
 
-            <br></br>
-
-            <span>{username} | {created_at}</span>
-            <br></br>
-            <h4>{headline}</h4>
-            {image_url? <img src={image_url} alt={user_id} style={postImgStyle}/> : null}
-            <p>{content}</p>
-
-            <button onClick={toggleReplies}>{showReplies? "🙈  hide replies" : "💬  see replies"}</button>
-            {displayTrash? <button onClick={() => handleDelete(id)}>🗑️</button> : null}
-            <div className="ReplyList" style={replyDisplay}>
-                <ReplyForm activeUser={activeUser} postId={id} addReply={addReply}/>
-                {repliesArr.map(reply => {
-                    return(
-                        <Reply reply={reply} key={reply.id}/>
-                    )
-                })}
+                <button onClick={toggleReplies} style={replyButton}>{showReplies? `🙈 hide replies` : `💬 see replies`}</button>
+                {displayTrash? <button style={trashButton} onClick={() => handleDelete(id)}>🗑️</button> : null}
+                <div className="ReplyList" style={replyDisplay}>
+                    <ReplyForm activeUser={activeUser} postId={id} addReply={addReply}/>
+                    {repliesArr.map(reply => {
+                        return(
+                            <Reply reply={reply} key={reply.id}/>
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )

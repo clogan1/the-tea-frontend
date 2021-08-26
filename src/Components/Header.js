@@ -25,7 +25,9 @@ function Header( { activeUser }) {
 
     const avatarstyle = {
         width: '10%',
+        height: '10%',
         minWidth: '50px',
+        minHeight: '50px',
         borderRadius: '50%',
         overflow: 'hidden',
         objectFit: 'cover',
