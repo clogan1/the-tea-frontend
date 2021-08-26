@@ -43,7 +43,6 @@ function PostCard({post, activeUser, deletePost}) {
         borderRadius: '4px',
         // boxShadow: '0 8px 6px -6px gray',
         boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
-
     }
 
     const postImgStyle = {
