@@ -2,8 +2,12 @@ import React from 'react'
 
 function Search({ search, setSearch }) {
 
+    const searchContainer = {
+     float: 'right',
+     width: '70%'
+    }
     const searchBar = { 
-        width: '70%',
+        width: '80%',
         fontSize: '16px',
         fontFamily: 'Roboto',
         borderRadius: '4px',
@@ -18,7 +22,7 @@ function Search({ search, setSearch }) {
 
 
     return (
-        <div>
+        <div style={searchContainer}>
              <input 
                 style={searchBar}
                 type="text" 

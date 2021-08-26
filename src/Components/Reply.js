@@ -6,18 +6,38 @@ function Reply({ reply }) {
 
 
     const replyStyle = {
-        border: '1px solid',
         padding: '10px',
-        marginTop: '5px',
-        marginBottom: '5px'
     }
 
     const replyAvatar ={
-        maxWidth: '25px',
+        width: '25px',
+        height: '25px',
         borderRadius: '50%',
         overflow: 'hidden',
         objectFit: 'cover',
         backgroundColor: 'white',
+        float: 'left',
+        marginTop: '10px'
+    }
+
+    const replyHeader={
+        height: '20px',
+        margin: 'auto',
+        fontFamily: 'Roboto'
+    }
+
+    const usernameStyle = {
+        fontWeight: 'bold',
+        float: 'left'
+    }
+
+    const dateStyle = {
+        color: '#BDC7C3',
+        float: 'left'
+    }
+
+    const contentStyle ={
+        marginLeft: '40px'
     }
 
     const date = new Date(created_at)
@@ -25,9 +45,13 @@ function Reply({ reply }) {
     
     return (
         <div style={replyStyle} >
-            <img src={user.avatar} alt={user.username} style={replyAvatar}/>
-            <span> {user.username} | {replyDate}</span>
-            <p>{content}</p>
+            <div style={replyHeader}>
+                <img src={user.avatar} alt={user.username} style={replyAvatar}/>
+                <p style={usernameStyle}><b>&nbsp;&nbsp;&nbsp;{user.username}   &nbsp;&nbsp;&nbsp;</b></p>
+                <p style={dateStyle}>{replyDate}</p>
+            </div>
+            <br></br>
+            <p style={contentStyle}>{content}</p>
         </div>
     )
 }

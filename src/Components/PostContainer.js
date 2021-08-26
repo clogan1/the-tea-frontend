@@ -6,7 +6,6 @@ function PostContainer({posts, activeUser, deletePost }) {
   // console.log("fromContainer:", activeUser)
 
   const containerStyle = {
-    backgroundColor: '#E4F1EE',
     width: '80%',
     margin: 'auto',
     minHeight: '100vh',

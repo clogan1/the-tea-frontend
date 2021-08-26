@@ -12,6 +12,7 @@ function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, commu
         float: 'left',
         width: '15%',
         minHeight: '100vh',
+        minWidth: '300px',
         // backgroundColor: '#E4F1EE',
         textAlign: 'left',
         padding: '10px',
@@ -52,6 +53,11 @@ function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, commu
         fontFamily: 'Roboto'
     }
 
+    const sortDiv = {
+        width: '80%',
+        margin: 'auto',
+        padding: '10px'
+    }
     function handleClick (){
         history.push('/newpost')
     }
@@ -81,8 +87,10 @@ function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, commu
 
             </div>
             <div className="feedContainer" style={feedContStyle}>
-                <Search search={search} setSearch={setSearch}/>
-                <Sorts setSort={setSort} />
+                <div style={sortDiv}>
+                    <Search search={search} setSearch={setSearch}/>
+                    <Sorts setSort={setSort} />
+                </div>
                 <PostContainer posts={posts} activeUser={activeUser} deletePost={deletePost}/>
             </div>
         </div>

@@ -13,18 +13,72 @@ function CreatePost({ communities, activeUser, addPost, setSort }) {
     }
     )
 
-    //console.log(formData)
-
     const formContStyle = {
         padding: '10px',
         width: '60%',
-        minHeight: '100vh',
         alignItems: 'center',
         justifyContent: 'center',
         margin: 'auto',
         textAlign: 'left',
-        backgroundColor: '#E4F1EE'
+        fontFamily: 'Roboto'
     }
+
+    const postButton = {
+        backgroundColor: '#539987',
+        padding: '5px',
+        borderRadius: '4px',
+        borderStyle: 'none',
+        fontFamily: 'Roboto',
+        height: '50px',
+        width: '20%',
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: '18px',
+        float: 'right'
+    }
+
+    const inputStyle = {
+        fontSize: '16px',
+        fontFamily: 'Roboto',
+        borderRadius: '4px',
+        borderColor: 'none',
+        borderStyle: 'none',
+        height: '30px',
+        boxShadow: '0 8px 6px -6px gray',
+        padding: '5px',
+        paddingLeft: '20px',
+        marginBottom: '20px',
+        width: '95%',
+        marginTop: '10px'
+    }
+
+    const textAreaStyle = {
+        fontSize: '16px',
+        fontFamily: 'Roboto',
+        borderRadius: '4px',
+        borderColor: 'none',
+        borderStyle: 'none',
+        height: '80px',
+        boxShadow: '0 8px 6px -6px gray',
+        padding: '5px',
+        paddingLeft: '20px',
+        marginBottom: '20px',
+        width: '95%',
+        marginTop: '10px'
+    }
+
+    const dropdownStyle = {
+        width: '30%',
+        fontFamily: 'Roboto',
+        height: '40px',
+        borderRadius: '4px',
+        fontSize: '16px',
+        marginBottom: '20px',
+        borderStyle: 'none',
+        boxShadow: '0 8px 6px -6px gray',
+    }
+
+
 
     function onChange(e){
         let name = e.target.name
@@ -67,7 +121,7 @@ function CreatePost({ communities, activeUser, addPost, setSort }) {
         <div style={formContStyle}>
            <h2>Create Post</h2>
            <form onSubmit={handleSubmit}>
-               <select name="community_id" onChange={onCommunityChange} value={formData.community_id}>
+               <select name="community_id" onChange={onCommunityChange} value={formData.community_id} style={dropdownStyle}>
                <option value="0"> Choose a Community </option>
                {communities.map(community => {
                    return(
@@ -77,13 +131,13 @@ function CreatePost({ communities, activeUser, addPost, setSort }) {
                </select>
                <br></br>
                 <label>Headline:</label><br></br>
-                <input type="text" id="headline" name="headline" onChange={onChange} value={formData.headline}></input><br></br>
+                <input style={inputStyle} type="text" id="headline" name="headline" onChange={onChange} value={formData.headline}></input><br></br>
                 <label>Text:</label><br></br>
-                <textarea type="text" id="text" name="content" onChange={onChange} value={formData.content}></textarea> <br></br>
+                <textarea style={textAreaStyle} type="text" id="text" name="content" onChange={onChange} value={formData.content}></textarea> <br></br>
                 <label>Image URL:</label><br></br>
-                <input type="text" id="image" name="image_url" onChange={onChange} value={formData.image_url}></input> <br></br>
+                <input style={inputStyle} type="text" id="image" name="image_url" onChange={onChange} value={formData.image_url}></input> <br></br>
                 <br></br>
-                <button type="submit">POST</button>
+                <button style={postButton} type="submit">Post</button>
            </form>
         </div>
     )

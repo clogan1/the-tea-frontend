@@ -35,8 +35,8 @@ function PostCard({post, activeUser, deletePost}) {
         backgroundColor: 'white',
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: '10px',
-        marginBottom: '10px',
+        marginTop: '20px',
+        marginBottom: '20px',
         textAlign: 'left',
         padding: '10px',
         minWidth: '600px',
@@ -78,8 +78,9 @@ function PostCard({post, activeUser, deletePost}) {
         padding: '5px 20px 5px',
         borderRadius: '16px',
         float: 'left',
-        marginTop: '10px'
+        marginTop: '10px',
     }
+
 
     const postInfoStyle = {
         float: 'left',
@@ -106,7 +107,7 @@ function PostCard({post, activeUser, deletePost}) {
         backgroundColor: 'Transparent',
         borderColor: '#E9ECEB',
         borderStyle: 'solid',
-        width: '90%',
+        width: '83%',
         padding: '5px',
         borderRadius: '4px',
         fontFamily: 'Roboto',
@@ -184,7 +185,7 @@ function PostCard({post, activeUser, deletePost}) {
                     <p style={dateStyle}>{postDate}</p>
                 </div>
                 <div className="postInfo" style={postInfoStyle}>
-                    <div style={communityTag}>{emoji}&nbsp;&nbsp; {name}</div>
+                        <div style={communityTag}>{emoji}&nbsp;&nbsp; {name}</div>
                     <div  style={likeDiv} onClick={handleLike}> {likeCount} {alreadyLiked ? "🖤" : "🤍"}</div>
                 </div>
 

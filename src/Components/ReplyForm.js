@@ -25,6 +25,7 @@ function ReplyForm({ activeUser, postId, addReply }) {
 
     const replyformdiv={
         marginTop: '10px',
+        fontFamily: 'Roboto',
     }
 
     const styleInput = {

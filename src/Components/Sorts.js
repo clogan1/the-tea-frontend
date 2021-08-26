@@ -3,14 +3,14 @@ import React from 'react'
 function Sorts( { setSort }) {
 
     const filterStyle = {
-    marginBottom: '20px',
+        
     }
 
     const sortButton = {
         backgroundColor: 'Transparent',
         borderColor: 'none',
         borderStyle: 'none',
-        width: '100px',
+        width: '80px',
         padding: '10px',
         color: 'black',
         borderRadius: '4px',
@@ -24,8 +24,8 @@ function Sorts( { setSort }) {
 
     return (
         <div style={filterStyle}>
-           <button value="top" onClick={handleClick} style={sortButton}>🔥 &nbsp;&nbsp;Top</button>
-           <button value="new" onClick={handleClick} style={sortButton}>✨ &nbsp;&nbsp;New</button>
+           <button value="top" onClick={handleClick} style={sortButton}>🔥 &nbsp;Top</button>
+           <button value="new" onClick={handleClick} style={sortButton}>✨ &nbsp;New</button>
         </div>
     )
 }
