@@ -10,6 +10,7 @@ function ReplyForm({ activeUser, postId, addReply }) {
         content: '',
     })
 
+  
     const addReplyButton = {
         backgroundColor: '#539987',
         padding: '5px',

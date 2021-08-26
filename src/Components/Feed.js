@@ -25,6 +25,7 @@ function Feed({ posts, activeUser, deletePost, setSort, sort, search, setSearch,
         alignItems: 'center',
         justifyContent: 'center',
         margin: 'auto',
+        float: 'left',
     }
 
     const createButton = {
@@ -59,7 +60,7 @@ function Feed({ posts, activeUser, deletePost, setSort, sort, search, setSearch,
     const sortDiv = {
         width: '80%',
         margin: 'auto',
-        padding: '10px'
+        padding: '10px',
     }
     function handleClick (){
         history.push('/newpost')

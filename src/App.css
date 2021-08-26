@@ -1,6 +1,7 @@
 .App {
   text-align: center;
-  font-family: 'roboto';
+  font-family: 'Roboto';
+  background-color:#F2F4F3;
 }
 
 .App-logo {
@@ -25,11 +26,12 @@
   /* font-size: calc(5px + 2vmin); */
   color: white;
 }
-
 .app-body-container {
   background-color:#F2F4F3;
   color: black;
   min-height: 100vh;
+  height: 100vh;
+  overflow: auto; 
 }
 
 .selectedCommunityBtn {

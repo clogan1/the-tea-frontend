@@ -44,8 +44,7 @@ function CreatePost({ communities, activeUser, addPost, setSort }) {
         borderColor: 'none',
         borderStyle: 'none',
         height: '30px',
-        // boxShadow: '0 8px 6px -6px gray',
-        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+        boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
         padding: '5px',
         paddingLeft: '20px',
         marginBottom: '20px',
@@ -60,8 +59,7 @@ function CreatePost({ communities, activeUser, addPost, setSort }) {
         borderColor: 'none',
         borderStyle: 'none',
         height: '80px',
-        // boxShadow: '0 8px 6px -6px gray',
-        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+        boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
         padding: '5px',
         paddingLeft: '20px',
         marginBottom: '20px',
@@ -77,8 +75,7 @@ function CreatePost({ communities, activeUser, addPost, setSort }) {
         fontSize: '16px',
         marginBottom: '20px',
         borderStyle: 'none',
-        // boxShadow: '0 8px 6px -6px gray',
-        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+        boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
     }
 
 

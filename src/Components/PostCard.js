@@ -41,8 +41,7 @@ function PostCard({post, activeUser, deletePost}) {
         padding: '10px',
         minWidth: '600px',
         borderRadius: '4px',
-        // boxShadow: '0 8px 6px -6px gray',
-        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+        boxShadow: 'rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px'
     }
 
     const postImgStyle = {
@@ -100,7 +99,7 @@ function PostCard({post, activeUser, deletePost}) {
 
     const cardBodyStyle = {
         padding: '10px',
-        fontFamily: 'Source Serif Pro',
+        fontFamily: 'Source Serif Pro sans',
         marginTop: '60px'
     }
 
