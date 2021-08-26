@@ -41,7 +41,9 @@ function PostCard({post, activeUser, deletePost}) {
         padding: '10px',
         minWidth: '600px',
         borderRadius: '4px',
-        boxShadow: '0 8px 6px -6px gray',
+        // boxShadow: '0 8px 6px -6px gray',
+        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+
     }
 
     const postImgStyle = {
@@ -123,6 +125,14 @@ function PostCard({post, activeUser, deletePost}) {
         borderRadius: '4px',
     }
 
+    const hrStyle = {
+        color: '#F2F4F3',
+        backgroundColor: '#F2F4F3',
+        border: 'none',
+        height: '1px'
+        
+    }
+
 
     const replyDisplay = showReplies? null : {display: 'none'}
 
@@ -133,7 +143,6 @@ function PostCard({post, activeUser, deletePost}) {
     function addReply(reply){
         setRepliesArr([...repliesArr, reply])
     }
-
 
     let displayTrash = (activeUser.id === user_id)
 
@@ -170,11 +179,23 @@ function PostCard({post, activeUser, deletePost}) {
             body: JSON.stringify(likeBody)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
     }
     }
 
- 
+    function renderReplies(){
+        return(
+        <div className="ReplyList" style={replyDisplay}>
+                    <br></br>
+                     <hr style={hrStyle}></hr>
+                    <ReplyForm activeUser={activeUser} postId={id} addReply={addReply}/>
+                    {repliesArr.map(reply => {
+                        return(
+                            <Reply reply={reply} key={reply.id}/>
+                        )
+                    })}
+                </div>
+        )
+    }
 
     return (
         <div style={cardContainer}>
@@ -192,21 +213,14 @@ function PostCard({post, activeUser, deletePost}) {
             </div>
 
             <div className="cardBody" style={cardBodyStyle}>
- 
+
                 <h2>{headline}</h2>
                 {image_url? <img src={image_url} alt={user_id} style={postImgStyle}/> : null}
                 <p>{content}</p>
-
+                    {showReplies? renderReplies() : null}
+                <br></br>
                 <button onClick={toggleReplies} style={replyButton}>{showReplies? `🙈 hide replies` : `💬 see replies`}</button>
                 {displayTrash? <button style={trashButton} onClick={() => handleDelete(id)}>🗑️</button> : null}
-                <div className="ReplyList" style={replyDisplay}>
-                    <ReplyForm activeUser={activeUser} postId={id} addReply={addReply}/>
-                    {repliesArr.map(reply => {
-                        return(
-                            <Reply reply={reply} key={reply.id}/>
-                        )
-                    })}
-                </div>
             </div>
         </div>
     )

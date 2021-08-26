@@ -4,7 +4,7 @@ import Search from './Search'
 import PostContainer from './PostContainer'
 import { useHistory } from "react-router-dom"
 
-function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, community, setCommunity, communities }) {
+function Feed({ posts, activeUser, deletePost, setSort, sort, search, setSearch, community, setCommunity, communities }) {
     let history = useHistory();
 
     // CSS
@@ -28,7 +28,7 @@ function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, commu
     }
 
     const createButton = {
-        backgroundColor: 'Transparent',
+        backgroundColor: '#F2F4F3',
         borderColor: '#539987',
         borderStyle: 'solid',
         width: '250px',
@@ -37,9 +37,12 @@ function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, commu
         fontWeight: 'bold',
         borderRadius: '4px',
         fontSize: '16px',
-        fontFamily: 'Roboto'
+        fontFamily: 'Roboto',
     }
 
+    const btndiv = {
+        marginBottom: '10px'
+    }
     const commButton = {
         backgroundColor: 'Transparent',
         borderColor: 'none',
@@ -74,13 +77,15 @@ function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, commu
     return (
         <div>
             <div className="leftNav" style={leftNavStyle}>
-                <button onClick={handleClick} style={createButton}>+ Create Post</button>
+                <div style={btndiv}>
+                    <button onClick={handleClick} style={createButton} className="buttonHover">+ Create Post</button>
+                </div>
                 <br></br>
                 <br></br>
-                <button style={commButton} onClick={selectAll} className={(community === '')? "selectedCommunityBtn" : ""}>🏠 &nbsp; Home </button>
+                <button style={commButton} onClick={selectAll} className={(community === '')? "selectedCommunityBtn" : "commButton"}>🏠 &nbsp; Home </button>
                 {communities.map(comm => {
                     return(
-                        <button className={(community === comm.id)? "selectedCommunityBtn" : ""} onClick={selectCommunity} style={commButton} key={comm.id} value={comm.id}>{comm.emoji} &nbsp; {comm.name}</button>
+                        <button className={(community === comm.id)? "selectedCommunityBtn" : "commButton"} onClick={selectCommunity} style={commButton} key={comm.id} value={comm.id}>{comm.emoji} &nbsp; {comm.name}</button>
                     )
                 })}
              
@@ -89,7 +94,7 @@ function Feed({ posts, activeUser, deletePost, setSort, search, setSearch, commu
             <div className="feedContainer" style={feedContStyle}>
                 <div style={sortDiv}>
                     <Search search={search} setSearch={setSearch}/>
-                    <Sorts setSort={setSort} />
+                    <Sorts setSort={setSort} sort={sort}/>
                 </div>
                 <PostContainer posts={posts} activeUser={activeUser} deletePost={deletePost}/>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Sorts( { setSort }) {
+function Sorts( { setSort, sort }) {
 
     const filterStyle = {
         
@@ -24,8 +24,8 @@ function Sorts( { setSort }) {
 
     return (
         <div style={filterStyle}>
-           <button value="top" onClick={handleClick} style={sortButton}>🔥 &nbsp;Top</button>
-           <button value="new" onClick={handleClick} style={sortButton}>✨ &nbsp;New</button>
+            <button value="new" onClick={handleClick} style={sortButton} className={(sort === 'new' || sort === '')? "selectedCommunityBtn" : "commButton"}>✨ &nbsp;New</button>
+            <button value="top" onClick={handleClick} style={sortButton} className={(sort === 'top')? "selectedCommunityBtn" : "commButton"}>🔥 &nbsp;Top</button>
         </div>
     )
 }

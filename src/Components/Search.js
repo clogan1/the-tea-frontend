@@ -4,7 +4,7 @@ function Search({ search, setSearch }) {
 
     const searchContainer = {
      float: 'right',
-     width: '70%'
+     width: '80%'
     }
     const searchBar = { 
         width: '80%',
@@ -14,7 +14,8 @@ function Search({ search, setSearch }) {
         borderColor: 'none',
         borderStyle: 'none',
         height: '40px',
-        boxShadow: '0 8px 6px -6px gray',
+        // boxShadow: '0 8px 6px -6px gray',
+        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
         padding: '5px',
         paddingLeft: '20px',
         marginBottom: '10px'

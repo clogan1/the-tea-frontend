@@ -77,7 +77,9 @@ function ReplyForm({ activeUser, postId, addReply }) {
     return (
         <div style={replyformdiv}>
             <form onSubmit={handleReplySubmit}>
+                <br></br>
                 <label>Add a reply</label>
+                <br></br>
                 <br></br>
                 <input style={styleInput} type="text" name="replycontent" onChange={handleChange} value={replyData.content}></input>
                 <button style={addReplyButton} type="submit">Add</button>

@@ -44,7 +44,8 @@ function CreatePost({ communities, activeUser, addPost, setSort }) {
         borderColor: 'none',
         borderStyle: 'none',
         height: '30px',
-        boxShadow: '0 8px 6px -6px gray',
+        // boxShadow: '0 8px 6px -6px gray',
+        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
         padding: '5px',
         paddingLeft: '20px',
         marginBottom: '20px',
@@ -59,7 +60,8 @@ function CreatePost({ communities, activeUser, addPost, setSort }) {
         borderColor: 'none',
         borderStyle: 'none',
         height: '80px',
-        boxShadow: '0 8px 6px -6px gray',
+        // boxShadow: '0 8px 6px -6px gray',
+        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
         padding: '5px',
         paddingLeft: '20px',
         marginBottom: '20px',
@@ -75,7 +77,8 @@ function CreatePost({ communities, activeUser, addPost, setSort }) {
         fontSize: '16px',
         marginBottom: '20px',
         borderStyle: 'none',
-        boxShadow: '0 8px 6px -6px gray',
+        // boxShadow: '0 8px 6px -6px gray',
+        boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
     }
 
 
@@ -93,6 +96,9 @@ function CreatePost({ communities, activeUser, addPost, setSort }) {
     function handleSubmit(e){
         e.preventDefault()
 
+        if(formData.headline === '' || formData.community_id === 0){
+            alert('Please select a community and/or provide at minimum a headline to submit a post!')
+        } else{
         let newPost = formData
         //console.log(newPost)
 
@@ -116,16 +122,17 @@ function CreatePost({ communities, activeUser, addPost, setSort }) {
         setSort('new')
         history.push('/')
     }
+    }
 
     return (
         <div style={formContStyle}>
-           <h2>Create Post</h2>
+           <h2>Create a post</h2>
            <form onSubmit={handleSubmit}>
                <select name="community_id" onChange={onCommunityChange} value={formData.community_id} style={dropdownStyle}>
                <option value="0"> Choose a Community </option>
                {communities.map(community => {
                    return(
-                       <option key={community.id} value={community.id}>{community.name}</option>
+                       <option key={community.id} value={community.id}>{community.emoji}&nbsp;{community.name}</option>
                    )
                })}
                </select>

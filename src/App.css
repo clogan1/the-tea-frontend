@@ -36,6 +36,16 @@
   font-weight: bold;
 }
 
+.buttonHover:hover{
+  border-width: 3px;
+  /* background-color: #539987; */
+}
+
+.commButton:hover {
+  font-weight: bold;
+}
+
+
 .App-link {
   color: #61dafb;
 }

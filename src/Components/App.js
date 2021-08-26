@@ -62,7 +62,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header activeUser={activeUser}/>
+      <Header activeUser={activeUser} setActiveUser={setActiveUser}/>
       <div className="app-body-container">
         <Switch>
           <Route path='/newpost'>
@@ -70,7 +70,7 @@ function App() {
           </Route>
 
           <Route exact path="/">
-            <Feed posts={displayPosts} activeUser={activeUser} deletePost={deletePost} setSort={setSort} search={search} setSearch={setSearch} community={community} setCommunity={setCommunity} communities={communitiesList}/>
+            <Feed posts={displayPosts} activeUser={activeUser} deletePost={deletePost} setSort={setSort} sort={sort} search={search} setSearch={setSearch} community={community} setCommunity={setCommunity} communities={communitiesList}/>
           </Route>
         </Switch>
 
