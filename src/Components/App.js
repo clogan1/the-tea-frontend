@@ -13,12 +13,43 @@ function App() {
   const [search, setSearch] = useState('')
   const [communitiesList, setCommunitiesList] = useState([])
   const [activeUser, setActiveUser] = useState({})
+  const [offset, setOffset] = useState(0)
+  const [limit, setLimit] = useState(10)
 
+  // console.log("offset:", offset)
+  // console.log("limit:", limit)
+
+// first page load
   useEffect(() => {
-    fetch(`http://localhost:9292/posts`)
+    fetch(`http://localhost:9292/posts/${limit}/${offset}`)
     .then(res => res.json())
     .then(setPosts)
   }, [])
+
+//subsequent page loads
+useEffect(() => {
+  // if(community === ''){
+  fetch(`http://localhost:9292/posts/${limit}/${offset}`)
+  .then(res => res.json())
+  .then(postData => {
+    // console.log(postData)
+    let newPostArr = posts.concat(postData)
+    //console.log(newPostArr)
+    setPosts(newPostArr)
+  }) 
+ }, [offset])
+
+//  useEffect(() => {
+//   if(community !== ''){
+//   fetch(`http://localhost:9292/posts/${limit}/${offset}/${community}`)
+//   .then(res => res.json())
+//   .then(commPosts => {
+//     setPosts(commPosts)
+//   })} else{
+//     setOffset(0)
+//   }
+//  }, [community])
+
 
   useEffect(() => {
     fetch(`http://localhost:9292/communities`)
@@ -47,7 +78,8 @@ function App() {
     if(community !== ''){
       return post.community_id === community
     }else {return post}
-  }).filter(post => {
+  })
+  .filter(post => {
     if(search){
       return post.headline.toLowerCase().includes(search.toLowerCase()) || post.content.toLowerCase().includes(search.toLowerCase()) 
     } else {
@@ -59,6 +91,7 @@ function App() {
       if (post1.created_at> post2.created_at) return -1
     }
   })
+  
 
   return (
     <div className="App">
@@ -70,7 +103,7 @@ function App() {
           </Route>
 
           <Route exact path="/">
-            <Feed posts={displayPosts} activeUser={activeUser} deletePost={deletePost} setSort={setSort} sort={sort} search={search} setSearch={setSearch} community={community} setCommunity={setCommunity} communities={communitiesList}/>
+            <Feed posts={displayPosts} activeUser={activeUser} deletePost={deletePost} setSort={setSort} sort={sort} search={search} setSearch={setSearch} community={community} setCommunity={setCommunity} communities={communitiesList} setOffset={setOffset} offset={offset} limit={limit}/>
           </Route>
         </Switch>
 

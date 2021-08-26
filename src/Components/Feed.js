@@ -4,7 +4,7 @@ import Search from './Search'
 import PostContainer from './PostContainer'
 import { useHistory } from "react-router-dom"
 
-function Feed({ posts, activeUser, deletePost, setSort, sort, search, setSearch, community, setCommunity, communities }) {
+function Feed({ posts, activeUser, deletePost, setSort, sort, search, setSearch, community, setCommunity, communities, offset, setOffset, limit }) {
     let history = useHistory();
 
     // CSS
@@ -62,6 +62,18 @@ function Feed({ posts, activeUser, deletePost, setSort, sort, search, setSearch,
         margin: 'auto',
         padding: '10px',
     }
+    const seeMoreBtn = {
+        backgroundColor: '#539987',
+        padding: '5px',
+        borderRadius: '4px',
+        borderStyle: 'none',
+        fontFamily: 'Roboto',
+        height: '50px',
+        width: '20%',
+        marginLeft: '20px',
+        color: 'white',
+        fontWeight: 'bold',
+    }
     function handleClick (){
         history.push('/newpost')
     }
@@ -69,10 +81,18 @@ function Feed({ posts, activeUser, deletePost, setSort, sort, search, setSearch,
    // console.log(communities)
     function selectCommunity(e){
         setCommunity(parseInt(e.target.value))
+        // setOffset(0)
     }
 
     function selectAll () {
         setCommunity('')
+        // setOffset(0)
+    }
+
+    function handleSeeMore(){
+        if(community === ''){
+            setOffset((offset) => offset + limit)
+        }
     }
 
     return (
@@ -98,6 +118,7 @@ function Feed({ posts, activeUser, deletePost, setSort, sort, search, setSearch,
                     <Sorts setSort={setSort} sort={sort}/>
                 </div>
                 <PostContainer posts={posts} activeUser={activeUser} deletePost={deletePost}/>
+                <button onClick={handleSeeMore} style={seeMoreBtn}>See More Posts</button>
             </div>
         </div>
     )
