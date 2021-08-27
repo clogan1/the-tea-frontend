@@ -1,6 +1,6 @@
 ## About This Project
 <p align="center"><img src="./public/logo_white.png" alt="logo" width="600px" margin="auto"></p>
-<p align="center"><img src="./public/logo_green.png" alt="logo" width="600px" margin="auto"></p>
+
 
 The Tea is a social media site where lovers of reality TV shows can engage in discussion and connect with other fans. 
 
