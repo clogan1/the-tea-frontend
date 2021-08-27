@@ -37,7 +37,7 @@ In order to set up this project locally, you will need to install and launch the
 ## Usage
 On the Tea, users can create new posts, reply to existing posts, and like posts, similar to Reddit.
 
-<img src="./public/theTea.gif" alt="logo" width="1000px" margin="auto">
+<img src="./public/theTea_long.gif" alt="logo" width="1000px" margin="auto">
 
 
 <br />
