@@ -124,7 +124,7 @@ function CreatePost({ communities, activeUser, addPost, setSort }) {
     return (
         <div style={formContStyle}>
            <h2>Create a post</h2>
-           <form onSubmit={handleSubmit}>
+           <form onSubmit={handleSubmit} autocomplete="off">
                <select name="community_id" onChange={onCommunityChange} value={formData.community_id} style={dropdownStyle}>
                <option value="0"> Choose a Community </option>
                {communities.map(community => {

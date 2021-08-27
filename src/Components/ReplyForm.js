@@ -77,7 +77,7 @@ function ReplyForm({ activeUser, postId, addReply }) {
 
     return (
         <div style={replyformdiv}>
-            <form onSubmit={handleReplySubmit}>
+            <form onSubmit={handleReplySubmit} autocomplete="off">
                 <br></br>
                 <label>Add a reply</label>
                 <br></br>

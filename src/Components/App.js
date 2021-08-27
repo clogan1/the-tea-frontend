@@ -14,7 +14,7 @@ function App() {
   const [communitiesList, setCommunitiesList] = useState([])
   const [activeUser, setActiveUser] = useState({})
   const [offset, setOffset] = useState(0)
-  const [limit, setLimit] = useState(10)
+  const [limit, setLimit] = useState(25)
 
   // console.log("offset:", offset)
   // console.log("limit:", limit)
