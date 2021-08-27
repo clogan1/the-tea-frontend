@@ -50,7 +50,7 @@ function Header( { activeUser, setActiveUser }) {
     return (
         <header className="App-header">
             <div className="logodiv" style={logoStyle} onClick={routeHome}>
-            <h2>🍵 &nbsp;The Tea</h2>
+            <h2>🍵 &nbsp;the Tea</h2>
             </div>
             <div className="userdiv" style={userdivStyle}>
                 {/* <p>{username}</p> */}
