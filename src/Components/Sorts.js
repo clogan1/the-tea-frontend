@@ -11,7 +11,7 @@ function Sorts( { setSort, sort }) {
         borderColor: 'none',
         borderStyle: 'none',
         width: '80px',
-        padding: '10px',
+        padding: '5px',
         color: 'black',
         borderRadius: '4px',
         textAlign: 'left',

@@ -39,6 +39,7 @@ useEffect(() => {
   }) 
  }, [offset])
 
+ 
 //  useEffect(() => {
 //   if(community !== ''){
 //   fetch(`http://localhost:9292/posts/${limit}/${offset}/${community}`)
