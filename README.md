@@ -28,8 +28,8 @@ This project was built with the following:
 ## Getting Started
 In order to set up this project locally, you will need to install and launch the backend server [here](https://github.com/clogan1/the-tea-backend). To start the server, use the following in CLI:
 
-1.  ```bundle install```
-2. ```bundle exec rake server```
+1.  ```npm install```
+2. ```npm start``
 
 <br />
 
